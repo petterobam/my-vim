@@ -1,16 +1,16 @@
-"  加载插件的插件提前注入
+"  自动安装插件，加载插件的插件提前注入
 execute pathogen#infect()
 
-" vundle 配置 {{{
+
+" 安装方法一
+" vundle 插件安装 配置 {{{
 set rtp+=~/.vim/bundle/vundle
 "set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " 在这里添加你想安装的Vim插件
-"Plugin 'gmarik/Vundle.vim'
 "这应该始终是第一个
-
-Plugin 'gmarik/Vundle.vim'
-
+"Plugin 'gmarik/Vundle.vim'
 " （1）从Github进行安装：
 "Plugin 'user/plugin'
 " （2）从http://vim-scripts.org/vim/scripts.html进行安装：
@@ -26,6 +26,7 @@ Plugin 'gmarik/Vundle.vim'
 
 call vundle#end()
 
+" 利用 :BundleInstall 命令安装，感觉就是git下载
 Bundle 'gmarik/vundle'
 " Python补全强力插件
 Bundle 'davidhalter/jedi'
@@ -36,7 +37,52 @@ Bundle 'jiangmiao/auto-pairs'
 " 添加/解除注释
 Bundle 'scrooloose/nerdcommenter'
 
+" 或者直接git下载到 ~/.vim/bundle 目录下即可生效
+
 " }}}
+
+" 安装方法二
+" 插件工具安装配置 {{{
+
+" 为插件指定目录
+" - 对于Neovim：~/.local/share/nvim/plugged 
+" - 避免使用标准的Vim目录名，如'plugin'，
+"call plug#begin('~/.vim/plugged')
+" 确保使用单引号
+
+" (1)githuhub 短语 fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+
+" (2)任何有效的 git URL
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" (3)多个插件命令可以使用|隔离 
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" (4)按需加载 
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" (5)使用非主分支  
+" Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+" (6)使用标记版本;允许使用通配符（需要git 1.9.2或更高版本） 
+"Plug 'fatih/vim-go', { 'tag': '*' }
+
+" (7)插件选择
+"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" (8)本地插件更新挂钩 ~/.vim/plugged with post-update hook
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" (9)非托管插件（手动安装和更新）
+"Plug '~/my-prototype-plugin'
+
+" 初始化插件
+"call plug#end()
+
+" }}}
+
 
 
 " 自动补全配置 {{{
